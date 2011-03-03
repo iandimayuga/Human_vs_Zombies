@@ -165,11 +165,6 @@ namespace Human_vs_Zombies.HvZClasses.Mobs
             base.Update(dTime);
         }
 
-        public void Kill()
-        {
-            this.isDead = true;
-        }
-
         public void SetVelocityPlayer(Vector2 velocity)
         {
             float effectiveMaxVel = this.GetMaxVel();
@@ -189,10 +184,6 @@ namespace Human_vs_Zombies.HvZClasses.Mobs
                 unitVelocity.Normalize();
                 base.SetVelocityUnchecked(effectiveMaxVel * unitVelocity);
             }
-        }
-        public bool IsDead()
-        {
-            return isDead;
         }
 
         public override void Draw() 
