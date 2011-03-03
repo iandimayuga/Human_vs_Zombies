@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Human_vs_Zombies.Controls;
 using Human_vs_Zombies.Rendering;
 using Microsoft.Xna.Framework.Graphics;
+using Human_vs_Zombies.GameElements;
 
 namespace Human_vs_Zombies.HvZClasses.Mobs
 {
@@ -13,8 +14,6 @@ namespace Human_vs_Zombies.HvZClasses.Mobs
 
     public class Zombie : Mob
     {
-        private Vector2 m_Target;
-
         private Brains m_Brains;
 
         public Zombie(HvZWorld hvzWorld, Vector2 position, Vector2 rotation, float radius, Vector2 velocity, float maxVelocity, Brains brains)
@@ -31,16 +30,6 @@ namespace Human_vs_Zombies.HvZClasses.Mobs
         public void SetBrains(Brains brains)
         {
             m_Brains = brains;
-        }
-
-        public Vector2 GetTarget()
-        {
-            return m_Target;
-        }
-
-        public void SetTarget(Vector2 target)
-        {
-            this.m_Target = target;
         }
         public override void Update(float dTime)
         {
@@ -90,7 +79,7 @@ namespace Human_vs_Zombies.HvZClasses.Mobs
 
         public override void Draw() 
         {
-            base.DrawCircular(TextureStatic.Get("Zombie"), 0.5f);
+            base.DrawCircular(TextureStatic.Get("Zombie"), Settings.zombieLayer);
         }
     }
 }

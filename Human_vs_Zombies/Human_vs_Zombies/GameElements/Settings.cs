@@ -13,17 +13,19 @@ namespace Human_vs_Zombies.GameElements
         //rate at which the player can fire their weapon
         public static float playerWeaponTimer { get { return .1f; } }
 
+        public static float playerRocketTimer { get { return .3f; } }
+
         public static int playerAmmo { get { return 128; } }
 
-        public static int zombiePoints { get { return 1; } }
+        public static int zombiePoints { get { return 5; } }
 
         public static int timePoints { get { return 1; } }
 
         //width of game screen
-        public static int screenWidth { get { return 960; } }
+        public static int screenWidth { get { return 1366; } }
 
         //height of game screen
-        public static int screenHeight { get { return 540; } }
+        public static int screenHeight { get { return 768; } }
 
         //width of game world
         public static int worldWidth { get { return 1920; } }
@@ -50,6 +52,8 @@ namespace Human_vs_Zombies.GameElements
 
         public static float startClusterAI { get { return 15f; } }
 
+        public static float startDodgeAI { get { return 30f; } }
+
         public static float clusterAttackTimer { get { return 5; } }
 
         public static float clusterWaitTimer { get { return 10; } }
@@ -60,14 +64,29 @@ namespace Human_vs_Zombies.GameElements
 
         public static float itemBlinkRate { get { return .5f; } }
 	    
-	public static int itemMax { get { return 10; } }
+	    public static int itemMax { get { return 10; } }
 
         public static int itemAmmo { get { return 10; } }
+
+        public static float dartLife { get { return .5f; } }
+
+        public static float rocketLife { get { return .9f; } }
+
+        public static int rocketAmmo { get { return 3; } }
+
+        public static float rocketRadius { get { return 16; } }
+
+        public static float rocketAccel { get { return 1024; } }
+
+        public static float rocketBlastRadius { get { return 128; } }
+
+        public static float rocketBlastSpeed { get { return 256; } }
 
         public static float backgroundLayer { get { return 0f; } }
         public static float zombieLayer { get { return 0.1f; } }
         public static float humanLayer { get { return 0.2f; } }
         public static float dartLayer { get { return 0.3f; } }
+        public static float itemLayer { get { return 0.35f; } }
         public static float shadowLayer { get { return 0.4f; } }
         public static float wallLayer { get { return 0.5f; } }
         public static float explosionLayer { get { return 0.6f; } }

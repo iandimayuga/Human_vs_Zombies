@@ -39,19 +39,19 @@ namespace Human_vs_Zombies.HvZClasses.Items
         {
             if (m_Life > Settings.itemWarningTime || m_Life % Settings.itemBlinkRate < Settings.itemBlinkRate / 3)
             {
-                base.DrawCircular(m_Texture, 0.5f);
+                base.DrawCircular(m_Texture, Settings.itemLayer);
             }
         }
         public static Item NewRandomItem(HvZWorld hvzWorld, Vector2 position, Vector2 rotation, float radius, float lifespan)
         {
-            // Eventually, put logic in here to determine which random item to spawn.
             double item = (new Random()).Next(100);
-            // Spawn more ammo 70% of the time and a Nuke 30%
-            if (item < 60)
+            // Spawn more ammo 90% of the time, a Nuke 1%, and a RocketLauncher 4%
+            if (item < 75)
                 return new AmmoItem(hvzWorld, position, rotation, radius, lifespan, Settings.itemAmmo);
-            if (item < 80)
+            if (item < 90)
+                return new RocketItem(hvzWorld, position, rotation, radius, lifespan, Settings.rocketAmmo);
+            if (item < 95)
                 return new ExplosionItem(hvzWorld, position, rotation, radius, lifespan);
-            else
                 return new SpeedItem(hvzWorld, position, rotation, radius, lifespan);
         }
     }

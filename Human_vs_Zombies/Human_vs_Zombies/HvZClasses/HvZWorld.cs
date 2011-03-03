@@ -93,7 +93,7 @@ namespace Human_vs_Zombies.HvZClasses
                     gridY += (int) Settings.wallRadius;
                 }
                 gridX += (int) Settings.wallRadius;
-                gridY = 0; 
+                gridY = (int) Settings.wallRadius; 
             }
         }
 
@@ -270,7 +270,7 @@ namespace Human_vs_Zombies.HvZClasses
                 0f,
                 Vector2.Zero,
                 SpriteEffects.None,
-                0f);
+                Settings.backgroundLayer);
 
             Drawer.DrawString(
                 "Ammo: " + this.m_Player.GetAmmo(),
@@ -281,6 +281,19 @@ namespace Human_vs_Zombies.HvZClasses
                 2f,
                 SpriteEffects.None,
                 1f);
+
+            if (this.m_Player.GetRockets() > 0)
+            {
+                Drawer.DrawString(
+                "Rockets: " + this.m_Player.GetRockets(),
+                new Vector2(20, Settings.worldHeight - 4 * (Drawer.font.MeasureString("Rockets").Y)),
+                Color.Red,
+                0f,
+                new Vector2(0, 0),
+                2f,
+                SpriteEffects.None,
+                1f);
+            }
 
             String scoreString = "Score: " + this.m_Player.GetScore(); // OWEN: REPLACE THIS WITH GET SCORE!!!!
             Drawer.DrawString(
@@ -301,7 +314,7 @@ namespace Human_vs_Zombies.HvZClasses
                     Wall wall = (Wall)e; //eeeeeeevaaa!
                     if (wall.CastShadow())
                     {
-                        DrawShadow(wall, .9f);
+                        DrawShadow(wall, Settings.shadowLayer);
                     }
                 }
             }
@@ -322,7 +335,25 @@ namespace Human_vs_Zombies.HvZClasses
             }
             if (InShadow(position, playerPosition)) {
                 this.numZombies++;
-                Zombie zomblie = new Zombie(this, position, Vector2.Zero, 32f, Vector2.Zero, Settings.zombieMaxVel, m_TimeElapsed < Settings.startClusterAI ? (Brains)new SimpleAIBrains(this) : new ClusterAIBrains(this));
+
+                Brains brains;
+
+                double rand = m_Random.NextDouble();
+
+                if (m_TimeElapsed > Settings.startDodgeAI && rand < .3)
+                {
+                    brains = new DodgeAIBrains(this);
+                }
+                else if (m_TimeElapsed > Settings.startClusterAI && rand < .7)
+                {
+                    brains = new ClusterAIBrains(this);
+                }
+                else
+                {
+                    brains = new SimpleAIBrains(this);
+                }
+
+                Zombie zomblie = new Zombie(this, position, Vector2.Zero, 32f, Vector2.Zero, Settings.zombieMaxVel, brains);
                 this.AddEntity(zomblie);
             }
         }
@@ -339,7 +370,7 @@ namespace Human_vs_Zombies.HvZClasses
         public void SpawnItem()
         {
             Vector2 playerPosition = m_Player.GetPosition();
-            Vector2 position = new Vector2(m_Random.Next((int)Settings.worldWidth - 30), m_Random.Next((int)Settings.worldHeight - 30));
+            Vector2 position = new Vector2(m_Random.Next(32, (int)Settings.worldWidth - 30), m_Random.Next(32, (int)Settings.worldHeight - 30));
 
             if (InShadow(position, playerPosition))
             {
@@ -504,7 +535,7 @@ namespace Human_vs_Zombies.HvZClasses
                 null, Color.Black, (float)Math.Atan2(dir1.Y, dir1.X) + angle, Vector2.UnitY * TextureStatic.Get("Shadow").Width, SpriteEffects.None, layer);
         }
 
-        private float SignedAngle(Vector2 v1, Vector2 v2)
+        public static float SignedAngle(Vector2 v1, Vector2 v2)
         {
             float angle = (float)Math.Acos(Vector2.Dot(v1, v2) / (v1.Length() * v2.Length()));
 

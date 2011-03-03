@@ -43,7 +43,7 @@ namespace Human_vs_Zombies.Controls
             float playerDistance = toPlayer.Length();
             toPlayer.Normalize();
 
-            float happyRadius = player.GetWeaponSpeed() * Projectile.LIFE + 128;
+            float happyRadius = player.GetWeaponSpeed() * Settings.dartLife + 128;
             float minSafeRadius = .7f * happyRadius;
             float maxSafeRadius = 1.2f * happyRadius;
             
@@ -125,7 +125,6 @@ namespace Human_vs_Zombies.Controls
             if (s_WaitTimer <= 0)
             {
                 Attack();
-                s_WaitTimer = 10;
             }
             else if (s_AttackTimer <= 0)
             {
@@ -137,6 +136,7 @@ namespace Human_vs_Zombies.Controls
         public static void Attack()
         {
             s_Attack = true;
+            s_WaitTimer = 10;
         }
 
         public static bool AreAttacking()
