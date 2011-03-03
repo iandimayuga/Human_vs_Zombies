@@ -32,9 +32,9 @@ namespace Human_vs_Zombies.GameElements
         public static float wallThickness { get { return 64f; } }
 
         //rate at which new walls spawn
-        public static float wallSpawnTimer { get { return 5f; } }
+        public static float wallSpawnTimer { get { return 1f; } }
 
-        public static float wallKillTimer { get { return 10f; } }
+        public static int wallMax { get { return 10; } }
 
         //rate at which the zombies spawn, spawns a zombie every 3 seconds
         //zombie spawn rate is also affected by the amount of shadow on the screen
@@ -44,12 +44,20 @@ namespace Human_vs_Zombies.GameElements
 
         public static float zombieMaxVel { get { return 256f; } }
 
-        public static float startClusterAI { get { return 30f; } }
+        public static float startClusterAI { get { return 15f; } }
+
+        public static float clusterAttackTimer { get { return 5; } }
+
+        public static float clusterWaitTimer { get { return 10; } }
 
         public static float itemLifespan { get { return 15; } }
 
         public static float itemWarningTime { get { return 5; } }
 
         public static float itemBlinkRate { get { return .5f; } }
+
+	public static int itemMax { get { return 20; } }
+
+        public static int itemAmmo { get { return 10; } }
     }
 }
