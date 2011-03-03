@@ -15,6 +15,10 @@ namespace Human_vs_Zombies.GameElements
 
         public static int playerAmmo { get { return 128; } }
 
+        public static int zombiePoints { get { return 1; } }
+
+        public static int timePoints { get { return 1; } }
+
         //width of game screen
         public static int screenWidth { get { return 960; } }
 
@@ -32,7 +36,7 @@ namespace Human_vs_Zombies.GameElements
         public static float wallThickness { get { return 64f; } }
 
         //rate at which new walls spawn
-        public static float wallSpawnTimer { get { return 1f; } }
+        public static float wallSpawnTimer { get { return 10f; } }
 
         public static int wallMax { get { return 10; } }
 
@@ -58,6 +62,6 @@ namespace Human_vs_Zombies.GameElements
 	    
 		public static int itemMax { get { return 10; } }
 
-        public static int itemAmmo { get { return 32; } }
+        public static int itemAmmo { get { return 10; } }
     }
 }
