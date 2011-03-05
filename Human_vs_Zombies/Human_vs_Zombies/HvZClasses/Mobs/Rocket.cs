@@ -14,8 +14,8 @@ namespace Human_vs_Zombies.HvZClasses.Mobs
         private float m_BlastRadius;
         private float m_BlastSpeed;
 
-        public Rocket(HvZWorld hvzWorld, Vector2 position, Vector2 rotation, float radius, Vector2 accel, float blastRadius, float blastSpeed)
-            : base(hvzWorld, position, rotation, radius, Vector2.Zero)
+        public Rocket(HvZWorld hvzWorld, Vector2 position, Vector2 rotation, float radius, Vector2 velocity, Vector2 accel, float blastRadius, float blastSpeed)
+            : base(hvzWorld, position, rotation, radius, velocity)
         {
             m_Accel = accel;
             this.SetMaxVel(.5f * accel.Length() * Settings.rocketLife * Settings.rocketLife);
